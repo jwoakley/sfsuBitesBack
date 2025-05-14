@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lan="en">
+<head>
+    <script>
+        function convertToPlain(html){
+            var tempDivElement = document.createElement("div");
+            tempDivElement.innerHTML = html;
+            tempDivElement.textContent = tempDivElement.innerText;
+            console.log('tempDivElement', tempDivElement)
+            return tempDivElement.textContent
+}
+        function getContent() {
+            const form = document.querySelectorAll('.sincerely-section textarea')
+            const formValues = Object.values(form).map(f => f.value)
+            let printContent = document.querySelector('.letter').innerHTML;
+            printContent += `
+                <div style='text-align:right; padding: 20px'>
+                    <p> Sincerely,</p>
+                    <p>${formValues[0]}</p>
+                    <p>${formValues[1]}</p>
+                    <p>${formValues[2]}</p>
+                    <p>${formValues[3]}</p>
+                </div>
+            `
+            return printContent
+        }
+
+        function printMail() {
+            const windowPrint = window.open(' ', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+            windowPrint.document.write(getContent());
+            windowPrint.document.close();
+            windowPrint.focus();
+            windowPrint.print();
+            windowPrint.close();
+        }
+
+        function sendMail() {
+            var link = "mailto:me@example.com"
+                    + "?cc=myCCaddress@example.com"
+                    + "&subject=" + encodeURIComponent("Call To Action")
+                    + "&body=" + encodeURIComponent(convertToPlain(getContent()).replace("\t", " "))
+            ;
+            window.location.href = link;
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Mitr:wght@200;300;400;500;600;700&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Press+Start+2P&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=VT323&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css" >
+
+    <title> Call To Action </title>
+    
+</head>
+<body>
+    <nav>
+        <a href="../index.html" class="Logo">
+          <div class="logo"> 
+            <!-- <img src="img" alt="alt text"> -->
+             <img src="img/yellow logo.png" alt="sfsu-bites-back-yellow-logo"/>
+          </div>
+        </a> 
+      
+          <div class="nav">
+            <a href="../index.html">Home</a>
+            <a href="../mission/mission.html">Mission</a>
+            <a href="../stories/stories.html">Stories</a>
+            <a href="action.html">Call to Action</a>
+          </div>
+    </nav>
+    <div class="outer-section">
+        <div class="statement">
+            <h1 class="slashing">They’re slashing our education</h1>
+            <img class="logo-purple" src="img/logo-purple.png" alt="sfsu-bites-back-purple-logo"/>
+            <h1 class="slashing"> We’re fighting back!</h1>
+            <br/>
+            <h3>Lecturers laid off. Classes cut. Students left behind. This isn’t just a budget issue — it’s a values issue. SFSU Bites Back is a declaration that we will not allow our education to be dismantled without a fight. Join us. Speak out. Bite back!</h3>
+        </div>
+    </div>
+    <div class="outer-section">
+        <h2>Contact Your Administration</h2>
+        <div>
+        </div>
+        <div class="inner-section">
+            <h2>Letter</h2>
+        <div>
+            <div class="letter">
+                <form
+                action="mailto:someone@example.com" 
+                method="post" 
+                enctype="text/plain">
+                    <p>Dear Senator Scott Wiener,</p>
+                    <br />
+                    <p>I am writing as a concerned student at San Francisco State University regarding the recent and forthcoming budget cuts to our university. 
+                    We have already been informed that these cuts will directly impact the Fall 2025 semester, and I want to express how deeply this is affecting not only our academic plans but also the overall climate of our campus.</p>
+                    <br />
+                    <p>Students are experiencing growing anxiety and uncertainty. The campus atmosphere is one of distress, as we try to navigate our educational goals amid shrinking resources. 
+                    These budget cuts have already begun to show their effects:</p>
+                    <br />
+                    <ul class="letter-list">
+                        <li>Class offerings are being reduced, limiting access to required courses and delaying graduation timelines.</li>
+                        <li>Tuition and fees are rising, placing greater financial pressure on students and their families.</li>
+                        <li>Beloved lecturers and professors are at risk of losing their positions, stripping us of mentorship and academic support.</li>
+                    </ul>
+                    <p>These changes directly undermine the promise of accessible, high-quality public education in California.</p>
+                    <br />
+                    <p>We ask that you:</p>
+                    <br />
+                    <ul class="letter-list">
+                        <li>Advocate for restored or increased funding to protect our academic experience and support systems.</li>
+                        <li>Work collaboratively with university leadership to prioritize investments in instruction and student services.</li>
+                        <li>Include student voices in future discussions and decisions about funding and resource allocation.</li>
+                    </ul>
+                    <br />
+                    <p>We urge you to stand with us. Our future depends on thoughtful, student-centered action now.</p>
+                    <br />
+            </div>      
+                    <div class="sincerely-section">
+                        <p>Sincerely,</p> 
+                        <div>
+                            <textarea placeholder='Name' name="name"></textarea>
+                        </div>
+                        <div>
+                            <textarea placeholder='Program/Major' name="major"></textarea>
+                        </div>
+                        <div>
+                            <textarea placeholder='Email/Contact Info' name="contact"></textarea>
+                        </div>
+                        <div>
+                            <textarea placeholder='Your City in CA' name="city"></textarea>
+                        </div>
+                    </div>
+                    <div class="button-row">
+                        <button onclick="printMail()" class="print-button" type="button"> Print Copy </button>
+                        <button onclick="sendMail()"
+                            class="submit-button" type="submit">Submit Email</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <h5> For physical letters, please send your message to this address: </h5>
+        <br>
+        <h3>455 Golden Gate Ave #14800, San Francisco, CA 94102</h3>
+   
+    </div> 
+    <footer>
+        <div class="footer-container">
+      
+          <div class="footer-item">
+            <a href="../mission/mission.html">About</a>
+          </div>
+    
+      
+          <div class="footer-item">
+            <a href="../action/action.html">Contact</a>
+          </div>
+      
+        </div>
+      </footer>
+</body>
+</html>
