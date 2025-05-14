@@ -1,0 +1,118 @@
+/* fonts */
+font-1 
+font-2
+font-3
+
+
+
+/* basic settings*/
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+
+
+/* style */
+body {
+    font-family: /* font */;
+    background-color: white;
+    flex: 1;
+}
+
+
+
+/* navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 1em 2em;
+}
+
+.nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: 500;
+}
+  
+.nav a:hover {
+    text-decoration: underline;
+}
+  
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.logo a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* main content */
+.main-image {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 20px 20px;
+}
+
+.main-image img {
+    max-width: 30%;
+    height: auto;   
+}
+
+.main-image img:hover {
+    transform: scale(1.01);
+    transition: transform 0.3s ease;
+}
+  
+.main-text {
+    text-align: justify;
+    max-width: 80%;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 20px;
+    color: black;
+}
+
+.main-text h1 {
+    text-align: center;
+}
+ 
+/* ADDITIONAL MODIFICATIONS
+.main-text p {}
+*/
+
+
+/* footer */
+footer {
+    background-color: black;
+    padding: 40px 0;
+}
+  
+.footer-container {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+  
+.footer-item a {
+    color: white;
+}
+  
+.footer-item a:hover {
+    text-decoration: underline;
+}
